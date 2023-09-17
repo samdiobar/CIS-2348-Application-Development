@@ -1,0 +1,10 @@
+# Samuel Barroso 1844307
+print("Enter integer:")
+user_num = int(input())
+print("You entered: " + str(user_num))
+print(str(user_num) + " squared is " + str(user_num ** 2))
+print("And " + str(user_num) + " cubed is " + str(user_num ** 3) + " !!")
+print("Enter another integer:")
+user_num1 = int(input())
+print(str(user_num) + " + " + str(user_num1) + " is " + str(user_num1 + user_num))
+print(str(user_num) + " * " + str(user_num1) + " is " + str(user_num1 * user_num))

@@ -1,8 +1,8 @@
 import datetime
 
-if __name__ == "__main__":
-  dates_file = open('inputDates.txt', 'r')
-  output_file = open("parsedDates.txt","w")
+def dateParse(input_file, output_file):
+  dates_file = open(input_file, 'r')
+  output_file = open(output_file,'w')
 
   months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
@@ -18,3 +18,8 @@ if __name__ == "__main__":
     line = dates_file.readline().replace("\n", "")
   dates_file.close()
   output_file.close()
+
+if __name__ == "__main__":
+  print("Please type input file name (Ex: \"input.txt\"): ",end="")
+  input_file = str(input())
+  dateParse(input_file, "parsedDates.txt")

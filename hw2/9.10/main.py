@@ -1,3 +1,6 @@
+# Name: Samuel Barroso
+# PSID: 1844307
+
 import csv
 
 def frequencies(input_file):

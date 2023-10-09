@@ -1,3 +1,6 @@
+# Name: Samuel Barroso
+# PSID: 1844307
+
 def palindrome(user_input):
   text = user_input.replace(" ", "")
 

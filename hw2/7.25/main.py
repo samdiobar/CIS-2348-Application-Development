@@ -1,3 +1,6 @@
+# Name: Samuel Barroso
+# PSID: 1844307
+
 def exact_change(user_total):
 
   money_types = [

@@ -1,3 +1,6 @@
+# Name: Samuel Barroso
+# PSID: 1844307
+
 def bruteForce(a1, b1, c1, a2, b2, c2):
   for x_temp in range(-10,10):
     for y_temp in range(-10,10):

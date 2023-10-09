@@ -1,3 +1,6 @@
+# Name: Samuel Barroso
+# PSID: 1844307
+
 def passwordChecker(user_input):
   result = user_input
 

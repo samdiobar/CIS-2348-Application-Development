@@ -1,3 +1,6 @@
+# Name: Samuel Barroso
+# PSID: 1844307
+
 import datetime
 
 def dateParse(input_file, output_file):

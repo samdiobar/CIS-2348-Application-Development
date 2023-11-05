@@ -11,6 +11,7 @@ class ItemToPurchase:
   def print_item_description(self):
     print(self.item_name + ":", self.item_description)
 
+
 class ShoppingCart:
   def __init__(self, customer_name="none", current_date="January 1, 2016"):
     self.customer_name = customer_name
@@ -45,15 +46,14 @@ class ShoppingCart:
     return total
 
   def print_total(self):
-    if self.get_num_items_in_cart() <= 0:
-      print("SHOPPING CART IS EMPTY")
-      return
     print(self.customer_name + "'s Shopping Cart - " + self.current_date)
     print("Number of Items: " + str(self.get_num_items_in_cart()) + "\n")
+    if self.get_num_items_in_cart() <= 0:
+      print("SHOPPING CART IS EMPTY")
     for item in self.cart_items:
       item.print_item_cost()
     print()
-    print("Total: $" + str(self.get_cost_of_cart()))
+    print("Total: $" + str(self.get_cost_of_cart()) + "\n")
 
   def print_descriptions(self):
     if self.get_num_items_in_cart() <= 0:
@@ -64,10 +64,64 @@ class ShoppingCart:
     for item in self.cart_items:
       item.print_item_description()
 
-    pass
+
+def print_menu(cart):
+  user_input = ""
+  while user_input != "q":
+    if user_input == "o":
+      print("OUTPUT SHOPPING CART")
+      cart.print_total()
+      user_input = ""
+    elif user_input == "i":
+      print("OUTPUT ITEMS' DESCRIPTIONS")
+      cart.print_descriptions()
+      user_input = ""
+    elif user_input == "a":
+      print("ADD ITEM TO CART")
+      new_item = ItemToPurchase()
+      new_item.item_name = str(input("Enter the item name:\n"))
+      new_item.item_description = str(input("Enter the item description:\n"))
+      new_item.item_price = float(input("Enter the item price:\n"))
+      new_item.item_quantity = int(input("Enter the item quantity:\n"))
+      cart.add_item(new_item)
+      user_input = ""
+    elif user_input == "r":
+      print("REMOVE ITEM FROM CART")
+      cart.remove_item(str(input("Enter name of item to remove:\n")))
+      user_input = ""
+    elif user_input == "c":
+      print("CHANGE ITEM QUANTITY")
+      new_item = ItemToPurchase()
+      new_item.item_name = str(input("Enter the item name:\n"))
+      new_item.item_quantity = int(input("Enter the item quantity:\n"))
+      cart.modify_item(new_item)
+      user_input = ""
+    else:
+      print("MENU")
+      print("a - Add item to cart")
+      print("r - Remove item from cart")
+      print("c - Change item quantity")
+      print("i - Output items' descriptions")
+      print("o - Output shopping cart")
+      print("q - Quit")
+      print()
+      user_input = str(input("Choose an option:\n"))
+      while True:
+        try:
+          if user_input not in ["a", "r", "c", "i", "o", "q"]:
+            user_input = str(input("Choose an option:\n"))
+          else:
+            break
+        except:
+          break
 
 
 if __name__ == "__main__":
-  customer_name = str(input("Enter customer's name:"))
-  todays_date = str(input("Enter today's date:"))
+  customer_name = str(input("Enter customer's name:\n"))
+  todays_date = str(input("Enter today's date:\n"))
   cart = ShoppingCart(customer_name, todays_date)
+  print()
+  print("Customer name: " + customer_name)
+  print("Today's date: " + todays_date)
+  print()
+  print_menu(cart)

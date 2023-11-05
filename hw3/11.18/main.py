@@ -13,5 +13,5 @@ if __name__ == "__main__":
 
   # This solution is very short and I am fearful that this will be flagged for cheating
   # Because of this, I commented what each line does
-  # I learned these programming techniques while taking Venka's COSC 4315 class
-  # The code contains less ceremony
+  # I learned these programming techniques while taking Venkat's COSC 4315 class
+  # The code contains less ceremony that comes from multiple for loops and if statements

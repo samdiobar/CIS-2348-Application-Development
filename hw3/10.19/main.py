@@ -32,12 +32,15 @@ class ShoppingCart:
     name = ItemToPurchase.item_name
     for item in self.cart_items:
       if item.item_name == name:
-        self.cart_items[self.cart_items.index(item)] = ItemToPurchase
+        self.cart_items[self.cart_items.index(item)].item_quantity = ItemToPurchase.item_quantity
         return
     print("Item not found in cart. Nothing modified.")
 
   def get_num_items_in_cart(self):
-    return len(self.cart_items)
+    num_of_items = 0
+    for item in self.cart_items:
+      num_of_items += item.item_quantity
+    return num_of_items
   
   def get_cost_of_cart(self):
     total = 0
@@ -47,13 +50,13 @@ class ShoppingCart:
 
   def print_total(self):
     print(self.customer_name + "'s Shopping Cart - " + self.current_date)
-    print("Number of Items: " + str(self.get_num_items_in_cart()) + "\n")
+    print("Number of Items: {0}\n".format(self.get_num_items_in_cart()))
     if self.get_num_items_in_cart() <= 0:
       print("SHOPPING CART IS EMPTY")
     for item in self.cart_items:
       item.print_item_cost()
     print()
-    print("Total: $" + str(self.get_cost_of_cart()) + "\n")
+    print('Total: ${0:g}\n'.format(self.get_cost_of_cart()))
 
   def print_descriptions(self):
     if self.get_num_items_in_cart() <= 0:
@@ -76,6 +79,7 @@ def print_menu(cart):
       print("OUTPUT ITEMS' DESCRIPTIONS")
       cart.print_descriptions()
       user_input = ""
+      print()
     elif user_input == "a":
       print("ADD ITEM TO CART")
       new_item = ItemToPurchase()
@@ -85,17 +89,20 @@ def print_menu(cart):
       new_item.item_quantity = int(input("Enter the item quantity:\n"))
       cart.add_item(new_item)
       user_input = ""
+      print()
     elif user_input == "r":
       print("REMOVE ITEM FROM CART")
       cart.remove_item(str(input("Enter name of item to remove:\n")))
       user_input = ""
+      print()
     elif user_input == "c":
       print("CHANGE ITEM QUANTITY")
       new_item = ItemToPurchase()
       new_item.item_name = str(input("Enter the item name:\n"))
-      new_item.item_quantity = int(input("Enter the item quantity:\n"))
+      new_item.item_quantity = int(input("Enter the new quantity:\n"))
       cart.modify_item(new_item)
       user_input = ""
+      print()
     else:
       print("MENU")
       print("a - Add item to cart")

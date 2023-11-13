@@ -187,5 +187,18 @@ def output_to_files(students, full_roster, elegible_students, disciplined_studen
 
 # Main
 if __name__ == "__main__":
-    student_manager = Students("FinalProjectStudentsMajorsList.csv", "FinalProjectGPAList.csv", "FinalProjectGraduationDatesList.csv")
+    # Take file input from user and make sure it has ".csv" extension
+    print("Please include all input files inside of this directory")
+    students_majors_list = str(input("StudentsMajorsList file name:"))
+    gpa_list = str(input("GPAList file name:"))
+    graduation_dates_list = str(input("GraduationDatesList file name:"))
+    if ".csv" not in students_majors_list:
+        students_majors_list += ".csv"
+    if ".csv" not in gpa_list:
+        gpa_list += ".csv"
+    if ".csv" not in graduation_dates_list:
+        graduation_dates_list += ".csv"
+    
+    # Instantiate Students Class based on the user inputs
+    student_manager = Students(students_majors_list, gpa_list, graduation_dates_list)
     output_to_files(student_manager, "FullRoster", "ScholarshipCandidates", "DisciplinedStudents")

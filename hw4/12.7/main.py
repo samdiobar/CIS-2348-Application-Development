@@ -1,3 +1,6 @@
+# Name: Samuel Barroso
+# PSID: 1844307
+
 def get_age():
     age = int(input())
     # TODO: Raise exception for invalid ages

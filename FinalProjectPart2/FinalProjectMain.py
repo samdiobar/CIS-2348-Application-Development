@@ -5,6 +5,8 @@ ID: 1844307
 
 import csv
 
+# param: list (List of strings)
+# return: (Boolean): Returns true if the list of strings includes exactly one float value
 def has_one_float(list):
     cnt = 0
     for str in list:
@@ -15,7 +17,8 @@ def has_one_float(list):
     if cnt == 1:
         return True
     return False
-
+# param: list (List of strings)
+# return: (Float): Returns first float value found in list. If no floats found, return 0.0
 def get_float(list):
     for str in list:
         if str == list[-1] and list[-1][-1] == ".":
@@ -23,7 +26,9 @@ def get_float(list):
         if (str.replace(".", "").isnumeric() and str.count(".") <= 1):
             return float(str)
     return 0.0
-
+# param: date1 (String)
+# param: date2 (String)
+# return: (Boolean): Returns true if date1 is after date2
 today = "12/7/2023"
 def time_greater_than(date1, date2):
     date1_arr = date1.split("/")
@@ -37,7 +42,8 @@ def time_greater_than(date1, date2):
             if int(date1_arr[1]) > int(date2_arr[1]):
                 return True
     return False
-
+# param: student (Student object)
+# prints Student object
 def print_student(student):
     print(f'{student["ID"]:10}{student["FirstName"]:14}{student["LastName"]:14}{student["GPA"]:7}')
 
@@ -65,27 +71,23 @@ class Students:
                 id = row[0]
                 self.master_dict[id].update({"GraduationDate": row[1]})
 
+# params: student (Student object)
+# manages Student query system
 def print_menu(students):
     student_dict = students.master_dict
+    # get initial user input
     user_input = input("Provide Student major and GPA: \n")
     print()
     user_input_lower = user_input.lower()
     while user_input != "q":
-        # get major user_input
-        #   - Requires knowing the list of majors from Students class
-        # get GPA from user_input 
-        #   - find Students 0.1 of the requested GPA
-        #   - find Students 0.25 of the requested GPA 
-        #   - Do not provide students that have graduated or had disciplinary action
-        # if no students found,
-        #   provide the student within the requested major with closest GPA to that requested.
-        #   do not provide students that have graduated or had disciplinary action
-
+        # get set of majors from input files
         majors_set = {student_dict[id]["Major"].lower() for id in student_dict}
+        # make sure there is exactly one major and exactly one float value in the user input
         if not any(user_input_lower.count(major) == 1 for major in majors_set):
             print("No such student")
         elif not has_one_float(user_input.split(" ")):
             print("No such student")
+        # computes logic for finding desired query
         else:
             input_major = ""
             for major in majors_set:
